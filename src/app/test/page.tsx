@@ -43,7 +43,7 @@ export async function generateMetadata(
 
   // fetch data
   // const data = await fetchQuestData(id as string);
-  // const previousImages = (await parent).openGraph?.images || [];
+  const previousImages = (await parent).openGraph?.images || [];
 
   // if (data?.name) {
   //   return {

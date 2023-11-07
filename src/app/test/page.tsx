@@ -11,6 +11,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   // read route params
   // const id = params.id
+  const id = "16";
 
   // console.log("parent", parent);
 
@@ -21,25 +22,49 @@ export async function generateMetadata(
   // if (!isFromDiscord && !isFromTelegram && !isFromSlack && !isFromTwitter) {
 
   // fetch data
-  // const product = await fetch(`https://.../${id}`).then((res) => res.json())
-
-  // optionally access and extend (rather than replace) parent metadata
+  const data = await fetchQuestData(id as string);
   const previousImages = (await parent).openGraph?.images || [];
 
-  return {
-    title: "TEST TITLE MAIN",
-    description: "TEST DESCRIPTION MAIN",
-    openGraph: {
-      title: "TEST TITLE",
-      description: "TEST DESCRIPTION",
-      images: ["/some-specific-page-image.jpg", ...previousImages],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "TEST TITLE TWITTER",
-      description: "TEST DESCRIPTION TWITTER",
-    },
-  };
+  if (data?.name) {
+    return {
+      title: data.name,
+      description: data.desc,
+      openGraph: {
+        title: data.name,
+        desc: data.description,
+        images: [data.img_card, ...previousImages],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: data.name,
+        description: data.desc,
+        image: data.img_card,
+      },
+    };
+  } else {
+    return {
+      title: "TEST TITLE MAIN",
+      description: "TEST DESCRIPTION MAIN",
+      openGraph: {
+        title: "TEST TITLE",
+        description: "TEST DESCRIPTION",
+        images: ["/some-specific-page-image.jpg", ...previousImages],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: "TEST TITLE TWITTER",
+        description: "TEST DESCRIPTION TWITTER",
+      },
+    };
+  }
+}
+
+async function fetchQuestData(questId: string) {
+  const response = await fetch(
+    `https://goerli.api.starknet.quest/get_quest?id=${questId}`
+  );
+  const data: QuestDocument | QueryError = await response.json();
+  return data as QuestDocument;
 }
 
 export default function Page({ params, searchParams }: Props) {

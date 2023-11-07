@@ -31,7 +31,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   // read route params
   // const id = params.id
-  const id = "16";
+  // const id = "16";
 
   // console.log("parent", parent);
 
@@ -42,41 +42,55 @@ export async function generateMetadata(
   // if (!isFromDiscord && !isFromTelegram && !isFromSlack && !isFromTwitter) {
 
   // fetch data
-  const data = await fetchQuestData(id as string);
-  const previousImages = (await parent).openGraph?.images || [];
+  // const data = await fetchQuestData(id as string);
+  // const previousImages = (await parent).openGraph?.images || [];
 
-  if (data?.name) {
-    return {
-      title: data.name,
-      description: data.desc,
-      openGraph: {
-        title: data.name,
-        description: data.desc,
-        images: [data.img_card, ...previousImages],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: data.name,
-        description: data.desc,
-        images: [data.img_card, ...previousImages],
-      },
-    };
-  } else {
-    return {
-      title: "TEST TITLE MAIN",
-      description: "TEST DESCRIPTION MAIN",
-      openGraph: {
-        title: "TEST TITLE",
-        description: "TEST DESCRIPTION",
-        images: ["/some-specific-page-image.jpg", ...previousImages],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: "TEST TITLE TWITTER",
-        description: "TEST DESCRIPTION TWITTER",
-      },
-    };
-  }
+  // if (data?.name) {
+  //   return {
+  //     title: data.name,
+  //     description: data.desc,
+  //     openGraph: {
+  //       title: data.name,
+  //       description: data.desc,
+  //       images: [data.img_card, ...previousImages],
+  //     },
+  //     twitter: {
+  //       card: "summary_large_image",
+  //       title: data.name,
+  //       description: data.desc,
+  //       images: [data.img_card, ...previousImages],
+  //     },
+  //   };
+  // } else {
+  //   return {
+  //     title: "TEST TITLE MAIN",
+  //     description: "TEST DESCRIPTION MAIN",
+  //     openGraph: {
+  //       title: "TEST TITLE",
+  //       description: "TEST DESCRIPTION",
+  //       images: ["/some-specific-page-image.jpg", ...previousImages],
+  //     },
+  //     twitter: {
+  //       card: "summary_large_image",
+  //       title: "TEST TITLE TWITTER",
+  //       description: "TEST DESCRIPTION TWITTER",
+  //     },
+  //   };
+  // }
+  return {
+    title: "TEST TITLE MAIN",
+    description: "TEST DESCRIPTION MAIN",
+    openGraph: {
+      title: "TEST TITLE",
+      description: "TEST DESCRIPTION",
+      images: ["/some-specific-page-image.jpg", ...previousImages],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "TEST TITLE TWITTER",
+      description: "TEST DESCRIPTION TWITTER",
+    },
+  };
 }
 
 async function fetchQuestData(questId: string) {

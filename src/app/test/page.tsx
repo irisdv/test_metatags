@@ -15,7 +15,6 @@ type QuestDocument = {
   logo: string;
   rewards_img: string;
   rewards_title: string;
-  rewards_nfts: NFTItem[];
   img_card: string;
   title_card: string;
   hidden: boolean;

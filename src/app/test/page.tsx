@@ -19,21 +19,6 @@ export async function generateMetadata(
   // const isFromTwitter = userAgent.toLowerCase().includes("twitter");
 
   // if (!isFromDiscord && !isFromTelegram && !isFromSlack && !isFromTwitter) {
-  return {
-    title: "DEFAULT TITLE MAIN",
-    description: "DEFAULT DESCRIPTION MAIN",
-    openGraph: {
-      title: "DEFAULT TITLE",
-      description: "DEFAULT DESCRIPTION",
-      images: ["/some-specific-page-image.jpg", ...previousImages],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "DEFAULT TITLE TWITTER",
-      description: "DEFAULT DESCRIPTION TWITTER",
-    },
-    // };
-  };
 
   // fetch data
   // const product = await fetch(`https://.../${id}`).then((res) => res.json())
